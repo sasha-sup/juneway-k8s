@@ -13,3 +13,20 @@ my-service-nodeport   NodePort    10.233.51.142   <none>        80:30000/TCP   6
 sadmin@master:~$ 
 
 ```
+
+
+Доступ до кластера с локальной машины до кластера 
+```sh
+sasha@T480:~$ hostname
+T480
+sasha@T480:~$ kubectl --insecure-skip-tls-verify  get nodes
+NAME     STATUS   ROLES    AGE    VERSION
+master   Ready    master   6d6h   v1.19.3
+worker   Ready    <none>   6d6h   v1.19.3
+sasha@T480:~$ 
+```
+
+- readiness - проверяет готовность контейнера к приему трафика. Проверяется доступность приложения, загрузки файлов конфигурации. 
+
+- liveness - помогают контейнеру понять, когда пришло время для перезапуска.  В случае указанном в mydeployment.yaml проба проверяет доступность /healtz с настройками по умолчанию.
+
